@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Performance Analyser</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <h1>🎓 Student Performance Analyser</h1>
+    <p>Upload a CSV file to analyse your class results instantly</p>
+  </header>
+
+  <!-- ── UPLOAD SECTION ── -->
+  <main>
+    <section class="upload-box" id="upload-box">
+      <div class="upload-inner">
+        <span class="upload-icon">📂</span>
+        <p>Drag & drop your CSV here or</p>
+        <label for="csv-input" class="btn-upload">Choose File</label>
+        <input type="file" id="csv-input" accept=".csv" hidden />
+        <p class="upload-hint">Format: Name, Subject1, Subject2, ...</p>
+      </div>
+    </section>
+
+    <!-- ── RESULTS (hidden until CSV uploaded) ── -->
+    <div id="results" class="hidden">
+
+      <!-- STAT CARDS -->
+      <section class="cards" id="stat-cards"></section>
+
+      <!-- CHARTS ROW -->
+      <section class="charts-row">
+        <div class="chart-box">
+          <h2>📊 Subject Averages</h2>
+          <canvas id="subjectChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h2>✅ Pass / Fail</h2>
+          <canvas id="passFailChart"></canvas>
+        </div>
+      </section>
+
+      <!-- GRADE REPORT -->
+      <section class="table-box">
+        <h2>🎓 Grade Report</h2>
+        <div class="table-wrap">
+          <table id="grade-table">
+            <thead id="grade-head"></thead>
+            <tbody id="grade-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- LEADERBOARD -->
+      <section class="table-box">
+        <h2>🥇 Leaderboard</h2>
+        <div class="table-wrap">
+          <table id="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rank</th><th>Name</th><th>Total</th>
+                <th>Average</th><th>Grade</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- WEAKEST SUBJECT ALERTS -->
+      <section class="table-box">
+        <h2>⚠️ Weakest Subject Alerts</h2>
+        <div id="alerts-list"></div>
+      </section>
+
+      <!-- STUDENT LOOKUP -->
+      <section class="table-box lookup-box">
+        <h2>🔍 Student Lookup</h2>
+        <div class="lookup-row">
+          <input type="text" id="lookup-input" placeholder="Enter student name..." />
+          <button onclick="lookupStudent()">Search</button>
+        </div>
+        <div id="lookup-result"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>
